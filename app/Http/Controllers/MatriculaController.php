@@ -59,18 +59,22 @@ class MatriculaController extends Controller
     public function update(Request $request, $id)
     {
         $matricula = Matricula::find($id);
-
+    
         if (!$matricula) {
             return "No se encontró la matrícula con ID: $id";
         }
-
-        // Ajusta esto según cómo se envía la asistencia en tu solicitud (por ejemplo, $request->asistencia)
-        $matricula->asistencia = $request->asistencia;
-        $matricula->fecha = now();  // Opcional: Ajusta la fecha según tus necesidades
+    
+        // Ajusta esto según cómo se envía la asistencia en tu solicitud
+        $asistencia = $request->asistencia;
+    
+        // Incrementa el contador de asistencias
+        $matricula->asistencia += $asistencia;
+    
         $matricula->save();
-
+    
         return "Se registró la asistencia en la matrícula con ID: $id";
     }
+    
 
     /**
      * Remove the specified resource from storage.

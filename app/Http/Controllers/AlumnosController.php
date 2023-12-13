@@ -64,13 +64,9 @@ class AlumnosController extends Controller
      */
     public function show($id)
     {
-        $alumnos = alumnos::leftJoin('matriculas', 'alumnos.id', '=', 'matriculas.alumno_id')
-        ->leftJoin('cursos', 'matriculas.curso_id', '=', 'cursos.id')
-        ->leftJoin('materias', 'cursos.materia_id', '=', 'materias.id')
-        ->select('alumnos.*', 'cursos.materia_id', 'materias.materia as nombre_materia')
-        ->findOrFail($id);
+        $alumno = alumnos::with('cursos.materias')->find($id);
 
-        return $alumnos;
+        return $alumno;
     }
 
     /**

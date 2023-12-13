@@ -12,7 +12,12 @@ class CursosController extends Controller
      */
     public function index()
     {
-        return cursos::all();
+        $cursos = cursos::join('materias', 'cursos.materia_id', '=', 'materias.id')
+        ->join('docentes', 'cursos.docente_id', '=', 'docentes.id')
+        ->select('cursos.*', 'materias.materia as nombre_materia', 'docentes.nombre as nombre_docente', 'docentes.apellido as apellido_docente')
+        ->get();
+
+    return $cursos;
     }
 
     /**
@@ -42,7 +47,9 @@ class CursosController extends Controller
      */
     public function show($id)
     {
-        return cursos::find($id);
+        $curso = cursos::with('materia', 'docente')->find($id);
+
+        return $curso;
     }
 
     /**

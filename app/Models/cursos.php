@@ -17,5 +17,24 @@ class cursos extends Model
     {
         return $this->hasMany(cursos::class);
     }
+
+    public function materias()
+    {
+        return $this->belongsTo(Materias::class, 'materia_id');
+    }
     
+    public function alumno()
+{
+    return $this->belongsTo(alumnos::class);
+}
+
+public function materia()
+{
+    return $this->belongsTo(materias::class);
+}
+
+public function docente()
+{
+    return $this->belongsTo(docentes::class);
+}
 }

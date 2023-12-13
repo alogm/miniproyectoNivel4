@@ -14,4 +14,8 @@ class docentes extends Model
         return $this->hasMany(cursos::class, 'docente_id');
     }
     
+    public function curso()
+{
+    return $this->hasMany(cursos::class);
+}
 }

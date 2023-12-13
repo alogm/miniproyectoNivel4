@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('matriculas', function (Blueprint $table) {
             $table->id();
-            $table->string('asistencia')->default(false);
+            $table->string('asistencia')->default('A');
             $table->date('fecha')->nullable();            
             $table->unsignedBigInteger('curso_id');
             $table->foreign('curso_id')->references('id')->on('cursos');

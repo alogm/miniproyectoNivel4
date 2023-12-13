@@ -14,4 +14,14 @@ class alumnos extends Model
         return $this->belongsToMany(Cursos::class, 'matriculas', 'alumno_id', 'curso_id')
         ->withTimestamps();
     }
+
+    public function materias()
+{
+    return $this->belongsTo(materias::class, 'materia_id');
+}
+
+public function curso()
+{
+    return $this->hasMany(cursos::class);
+}
 }

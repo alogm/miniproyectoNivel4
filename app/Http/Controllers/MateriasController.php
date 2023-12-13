@@ -12,7 +12,7 @@ class MateriasController extends Controller
      */
     public function index()
     {
-        //
+        return materias::all();
     }
 
     /**
@@ -20,7 +20,7 @@ class MateriasController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -28,15 +28,21 @@ class MateriasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $materia = new materias();
+
+        $materia->materia = $request->materia;
+
+        $materia->save();
+
+        return "se agrego nueva materia";
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(materias $materias)
+    public function show($id)
     {
-        //
+        return materias::find($id);
     }
 
     /**
@@ -50,16 +56,28 @@ class MateriasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, materias $materias)
+    public function update(Request $request, $id)
     {
-        //
+     $materia = materias::find($id);
+
+      $materia->materia = $request->materia;
+
+      $materia->save();
+
+      return "se edito nueva materia";
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(materias $materias)
+    public function destroy($id)
     {
-        //
+        $materia = materias::find($id);
+
+        $materia->cursos()->detach();
+
+        $materia->delete();
+
+        return "se elimino la materia";
     }
 }
