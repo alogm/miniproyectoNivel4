@@ -79,22 +79,22 @@ class DocentesController extends Controller
      */
     public function update(Request $request, $id)
     {
-    // Encuentra el docente existente por ID
+    
     $docente = docentes::findOrFail($id);
 
-    // Actualiza los campos del docente
+  
     $docente->nombre = $request->nombre;
     $docente->apellido = $request->apellido;
     $docente->correo = $request->correo;
     $docente->direccion = $request->direccion;
     $docente->fecha_nacimiento = $request->fecha_nacimiento;
 
-    // Guarda los cambios en el docente
+  
     $docente->save();
 
-    // Verifica si se proporcionó una materia_id en la solicitud
+  
     if ($request->has('materia_id')) {
-        // Actualiza el curso existente o crea uno nuevo si no existe
+       
         $curso = cursos::updateOrCreate(
             ['docente_id' => $docente->id],
             ['materia_id' => $request->materia_id]

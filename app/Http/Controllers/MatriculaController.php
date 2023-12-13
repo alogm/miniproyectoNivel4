@@ -64,11 +64,8 @@ class MatriculaController extends Controller
             return "No se encontró la matrícula con ID: $id";
         }
     
-        // Ajusta esto según cómo se envía la asistencia en tu solicitud
-        $asistencia = $request->asistencia;
-    
-        // Incrementa el contador de asistencias
-        $matricula->asistencia += $asistencia;
+        $matricula->asistencia = $request->asistencia;
+        $matricula->fecha = $request->fecha;
     
         $matricula->save();
     

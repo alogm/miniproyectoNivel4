@@ -113,10 +113,10 @@ class AlumnosController extends Controller
         $alumno = Alumnos::find($id);
 
         if ($alumno) {
-            // Elimina la asociación del alumno con los cursos
+            
             $alumno->cursos()->detach();
     
-            // Elimina al alumno
+           
             $alumno->delete();
     
             return "Se eliminó al alumno correctamente.";

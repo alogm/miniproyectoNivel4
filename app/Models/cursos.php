@@ -12,7 +12,7 @@ class cursos extends Model
     
     protected $fillable = ['docente_id', 'materia_id'];
 
-    // Relación con el modelo Docente
+    
     public function cursos()
     {
         return $this->hasMany(cursos::class);
