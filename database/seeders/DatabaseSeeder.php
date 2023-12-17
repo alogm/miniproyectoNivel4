@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
         $asistencia = new MateriasSeeder;
         $asistencia->run();
 
-        $curso = new CursosSeeder;
-        $curso->run();
-
         $docente =new DocentesSeeder;
         $docente->run();
+
+        $curso = new CursosSeeder;
+        $curso->run();
 
         $matri = new MatriculaSeeder;
         $matri->run();

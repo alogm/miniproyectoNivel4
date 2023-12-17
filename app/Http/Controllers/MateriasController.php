@@ -73,11 +73,17 @@ class MateriasController extends Controller
     public function destroy($id)
     {
         $materia = materias::find($id);
-
-        $materia->cursos()->detach();
-
-        $materia->delete();
-
-        return "se elimino la materia";
+    
+        if ($materia) {
+            // Desvincula la materia de los cursos
+            $materia->curso()->detach();
+    
+            // Elimina la materia
+            $materia->delete();
+    
+            return "Se eliminó la materia";
+        } else {
+            return "No se encontró la materia con el ID: $id";
+        }
     }
 }
