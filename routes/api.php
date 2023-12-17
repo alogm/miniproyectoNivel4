@@ -45,9 +45,12 @@ Route::post('/materias', [MateriasController::class,'store']);// solo agrega nue
 Route::put('/materias/{id}', [MateriasController::class,'update']);// solo actualiza materias
 Route::delete('/materias/{id}', [MateriasController::class,'destroy']);// 
 
-
-
-
 Route::get('/matriculas', [MatriculaController::class,'index']);// se puede ver todos los alumnos junto con su asistencia y la clase que toman 
+Route::get('/matriculas/{id}', [MatriculaController::class,'show']);// se puede ver a uno solo alumnos junto con su asistencia y la clase que toman 
 Route::put('/matriculas/{id}', [MatriculaController::class,'update']); // me actualiza la asistencia y su fecha pero actualiza no crea un nueva 
 
+
+//para agregar un nuevo alumno con el curso es "curso_id": 
+//para agregar un nuevo docente con su materia es "materia_id":
+//para agregar una nueva materia es "materia":
+//para modificar la aistencia y la fecha es en matricula y  es con "asistencia": y "fecha":

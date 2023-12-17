@@ -40,9 +40,15 @@ class MatriculaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(matricula $matricula)
+    public function show($id)
     {
-        //
+       $matriculas = Matricula::leftJoin('alumnos', 'matriculas.alumno_id', '=', 'alumnos.id')
+        ->leftJoin('cursos', 'matriculas.curso_id', '=', 'cursos.id')
+        ->leftJoin('materias', 'cursos.materia_id', '=', 'materias.id')
+        ->select('matriculas.*', 'alumnos.nombre as nombre_alumno', 'materias.materia as nombre_materia')
+        ->findOrFail($id);
+
+    return $matriculas;
     }
 
     /**
